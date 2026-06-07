@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="card shadow-sm">
+        <!-- Header -->
+        <div class="card-header bg-white py-3 d-flex flex-wrap justify-content-between align-items-center">
+            <h4 class="mb-0 fw-semibold text-dark">
+                <i class="bi bi-egg-fried me-2 text-success"></i>Meals Management
+            </h4>
+            
+            <a href="{% url 'meal_add' %}" class="btn btn-success shadow-sm">
+                <i class="bi bi-plus-circle me-1"></i> Add New Meal
+            </a>
+        </div>
+
+        <!-- Table -->
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">Member</th>
+                            <th>Date</th>
+                            <th class="text-center">Breakfast</th>
+                            <th class="text-center">Lunch</th>
+                            <th class="text-center">Dinner</th>
+                            <th class="text-end pe-4">Total Meals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for meal in meals %}
+                        <tr>
+                            <td class="ps-4 fw-medium">{{ meal.member }}</td>
+                            <td>{{ meal.date|date:"d M, Y" }}</td>
+                            <td class="text-center">
+                                {% if meal.breakfast %}
+                                    <span class="text-success fs-5"><i class="bi bi-check-circle-fill"></i></span>
+                                {% else %}
+                                    <span class="text-muted fs-5"><i class="bi bi-x-circle"></i></span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if meal.lunch %}
+                                    <span class="text-success fs-5"><i class="bi bi-check-circle-fill"></i></span>
+                                {% else %}
+                                    <span class="text-muted fs-5"><i class="bi bi-x-circle"></i></span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if meal.dinner %}
+                                    <span class="text-success fs-5"><i class="bi bi-check-circle-fill"></i></span>
+                                {% else %}
+                                    <span class="text-muted fs-5"><i class="bi bi-x-circle"></i></span>
+                                {% endif %}
+                            </td>
+                            <td class="text-end pe-4 fw-bold">{{ meal.total_meal|default:0 }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-5 text-muted">
+                                <i class="bi bi-clock-history display-1 mb-3"></i><br>
+                                <h5 class="mb-3">Meal System Coming Soon</h5>
+                                <p class="lead mb-0">
+                                    Breakfast, Lunch & Dinner tracking system is under development.
+                                </p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer Info -->
+        <div class="card-footer bg-light text-muted small py-3">
+            <i class="bi bi-info-circle me-2"></i>
+            Advanced features like monthly meal cost calculation, menu management will be available soon.
+        </div>
+    </div>
+</div>
+
+{% endblock %}

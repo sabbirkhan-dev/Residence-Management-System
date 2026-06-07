@@ -1,0 +1,21 @@
+# Django specific files
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Database
+db.sqlite3
+
+# Environment
+env/
+venv/
+.env
+
+# IDE settings
+.vscode/
+.idea/
+
+# Static and Media (If you don't want to track these)
+static/
+media/
