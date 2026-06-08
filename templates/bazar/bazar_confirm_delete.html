@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            
+            <div class="card shadow-sm border-0">
+                
+                <div class="card-header bg-danger-subtle border-0 py-3 text-center">
+                    <div class="d-inline-flex bg-danger text-white rounded-circle p-3 mb-2 shadow-sm animate-pulse">
+                        <i class="bi bi-exclamation-triangle fs-3"></i>
+                    </div>
+                    <h4 class="mb-0 fw-semibold text-danger">Delete Bazar Entry</h4>
+                </div>
+
+                <div class="card-body p-4 text-center">
+                    <p class="text-secondary fs-5 mb-4">
+                        Are you sure you want to permanently delete this entry? This action cannot be undone.
+                    </p>
+
+                    <div class="bg-light rounded-3 p-3 mb-4 text-start border">
+                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+                            <span class="text-muted small fw-medium">Bazar Date</span>
+                            <span class="text-dark fw-semibold">{{ object.date|date:"d M, Y" }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+                            <span class="text-muted small fw-medium">Amount</span>
+                            <span class="text-danger fw-bold">৳ {{ object.amount }}</span>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <span class="text-muted small fw-medium mb-1">Details</span>
+                            <span class="text-dark small text-wrap text-break">{{ object.details|default:"No details provided." }}</span>
+                        </div>
+                    </div>
+
+                    <form method="post" class="m-0">
+                        {% csrf_token %}
+
+                        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                            <a href="{% url 'bazar_list' %}" class="btn btn-light border px-4 py-2 rounded-3 text-secondary w-100 w-sm-auto">
+                                <i class="bi bi-arrow-left me-1"></i> Cancel
+                            </a>
+                            <button type="submit" class="btn btn-danger px-4 py-2 rounded-3 d-inline-flex align-items-center justify-content-center gap-2 shadow-sm w-100 w-sm-auto">
+                                <i class="bi bi-trash3"></i> Delete Forever
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    .animate-pulse {
+        animation: pulse 2s infinite ease-in-out;
+    }
+</style>
+
+{% endblock %}

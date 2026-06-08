@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0 fw-semibold text-dark">
+            <i class="bi bi-cart3 me-2 text-success"></i>Bazar List
+        </h3>
+
+        <a href="{% url 'bazar_add' %}" class="btn btn-success d-flex align-items-center gap-2 shadow-sm">
+            <i class="bi bi-plus-circle"></i> Add Bazar
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0"> <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr class="table-light">
+                            <th class="ps-4" style="width: 15%;">Date</th>
+                            <th style="width: 15%;">Amount</th>
+                            <th style="width: 50%;">Details</th>
+                            <th class="text-end pe-4" style="width: 20%;">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for bazar in bazars %}
+                        <tr>
+                            <td class="ps-4 fw-medium text-secondary">
+                                {{ bazar.date|date:"d M, Y" }}
+                            </td>
+                            
+                            <td class="fw-semibold text-dark">
+                                ৳ {{ bazar.amount }}
+                            </td>
+                            
+                            <td class="text-muted text-wrap text-break">
+                                {{ bazar.details|default:"—" }}
+                            </td>
+
+                            <td class="text-end pe-4">
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a href="{% url 'bazar_edit' bazar.id %}" 
+                                       class="btn btn-sm btn-outline-warning p-2 d-inline-flex align-items-center justify-content-center rounded-3" 
+                                       title="Edit">
+                                        <i class="bi bi-pencil-square fs-6"></i>
+                                    </a>
+
+                                    <a href="{% url 'bazar_delete' bazar.id %}" 
+                                       class="btn btn-sm btn-outline-danger p-2 d-inline-flex align-items-center justify-content-center rounded-3" 
+                                       title="Delete">
+                                        <i class="bi bi-trash3 fs-6"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center py-5 text-muted">
+                                <i class="bi bi-basket3 fs-1 d-block mb-2 opacity-50"></i>
+                                No bazar records found for this month.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

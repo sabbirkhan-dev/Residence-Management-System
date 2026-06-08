@@ -1,6 +1,35 @@
 from django.urls import path
-from . import views
+from .views import (
+    BazarListView,
+    BazarCreateView,
+    BazarUpdateView,
+    BazarDeleteView,
+)
 
 urlpatterns = [
-    path('', views.bazar_list, name='bazar_list'),
+
+    path(
+        "",
+        BazarListView.as_view(),
+        name="bazar_list"
+    ),
+
+    path(
+        "add/",
+        BazarCreateView.as_view(),
+        name="bazar_add"
+    ),
+
+    path(
+        "<int:pk>/edit/",
+        BazarUpdateView.as_view(),
+        name="bazar_edit"
+    ),
+
+    path(
+        "<int:pk>/delete/",
+        BazarDeleteView.as_view(),
+        name="bazar_delete"
+    ),
+
 ]
