@@ -10,6 +10,4 @@ class UserRegisterForm(UserCreationForm):
             "last_name",
             "phone",
             "floor_no",
-            "password1",
-            "password2",
         )

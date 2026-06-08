@@ -30,10 +30,10 @@
                     <i class="bi bi-speedometer2"></i> Dashboard
                 </a>
                 <a href="{% url 'member_list' %}" class="nav-link {% if request.resolver_match.url_name == 'member_list' %}active{% endif %}">
-                    <i class="bi bi-people"></i> Manage Members
+                    <i class="bi bi-people"></i> Members
                 </a>
                 <a href="{% url 'meal_list' %}" class="nav-link {% if request.resolver_match.url_name == 'meal_list' %}active{% endif %}">
-                    <i class="bi bi-egg-fried"></i> Manage Meals
+                    <i class="bi bi-egg-fried"></i> Meals
                 </a>
                 <a href="{% url 'deposit_list' %}" class="nav-link {% if request.resolver_match.url_name == 'deposit_list' %}active{% endif %}">
                     <i class="bi bi-cash-coin"></i> Deposits

@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     'reports',
     'dashboard',
     'members',
+    'rest_framework',
+    'api'
 ]
 
 MIDDLEWARE = [
